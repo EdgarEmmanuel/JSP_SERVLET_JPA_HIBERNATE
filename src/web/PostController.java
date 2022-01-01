@@ -99,18 +99,20 @@ public class PostController extends HttpServlet{
 			String libelle = req.getParameter("technologie");
 			int niveau = Integer.parseInt(req.getParameter("niveau"));
 			int cvId = (int) session.getAttribute("cvId");
+			Cv cv = this.daoCv.getOneCvById(cvId);
 			
 //			// saves the specialite 
-//			Specialite spe =new Specialite();
-//			spe.setLevel(niveau);
-//			spe.setLibelle(libelle);
-//			this.daoSpecialite.insertOneSpecialite(spe);
+			Specialite spe = new Specialite();
+			spe.setLevel(niveau);
+			spe.setLibelle(libelle);
+			spe.addCv(cv);
+			this.daoSpecialite.insertOneSpecialite(spe);
 			
 			 //add the specialite to the CV id 
-			this.daoCv.addSpecialiteToCv(cvId, 3);
+			//this.daoCv.addSpecialiteToCv(cvId, 3);
 			
-			PrintWriter pr = resp.getWriter();
-			pr.print(this.daoCv.getOneCvById(cvId));
+//			PrintWriter pr = resp.getWriter();
+//			pr.print(this.daoCv.getOneCvById(cvId));
 		}
 		
 		

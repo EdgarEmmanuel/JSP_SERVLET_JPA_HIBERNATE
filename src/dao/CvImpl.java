@@ -23,27 +23,30 @@ public class CvImpl implements ICv {
 		this.session = HibernateConfig.getSessionFactory().openSession();
 	}
 
-	@Override
-	public void addSpecialiteToCv(int idCv, int IdSpecialite) {
-		try {
-			transaction = this.session.beginTransaction();
-			Specialite spe = this.daoSpecialite.getOneSpeById(IdSpecialite);
-			Cv cv = this.getOneCvById(idCv);
-			if(cv!=null) {
-				List<Specialite> list = cv.getSpecialites();
-				list.add(spe);
-				cv.setSpecialites(list);
-				this.session.save(cv);
-			}
-			
-			
-			transaction.commit();
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-	}
+	//@Override
+//	@Transactional
+//	public void addSpecialiteToCv(int idCv, int IdSpecialite) {
+//		try {
+//			transaction = this.session.beginTransaction();
+//			Specialite spe = this.daoSpecialite.getOneSpeById(IdSpecialite);
+//			Cv cv = this.getOneCvById(idCv);
+//			if(cv!=null) {
+//				List<Specialite> list = cv.getSpecialites();
+//				list.add(spe);
+//				cv.setSpecialites(list);
+//				cv.getSpecialites().add(spe);
+//				this.session.saveOrUpdate(cv);
+//				this.session.flush();
+//			}
+//			
+//			
+//			transaction.commit();
+//			
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		
+//	}
 
 	@Override
 	public Cv getOneCvById(int id) {
@@ -61,6 +64,12 @@ public class CvImpl implements ICv {
 			cv = null;
 		}
 		return cv;
+	}
+
+	@Override
+	public void addSpecialiteToCv(int idCv, int IdSpecialite) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

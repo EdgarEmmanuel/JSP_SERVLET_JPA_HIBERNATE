@@ -1,13 +1,17 @@
 package model;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 
@@ -39,9 +43,22 @@ public class Cv {
 		private List<NiveauEtudes> niveaux;
 		
 	// a cv can have 0 or many realisation and a realisation can be in 1 or many cv 
-		@ManyToMany(fetch = FetchType.LAZY)
-		@JoinColumn(name = "cv_specialites")
-		private List<Specialite> specialites;
+		@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+	    @JoinTable(
+	            name = "cv_specialites",
+	            joinColumns = {@JoinColumn(name = "cv_id")},
+	            inverseJoinColumns = {@JoinColumn(name = "specialite_id")}
+	    )
+	    private Set<Specialite> specialites = new HashSet<>();
+		
+
+		public Set<Specialite> getSpecialites() {
+			return specialites;
+		}
+
+		public void setSpecialites(Set<Specialite> specialites) {
+			this.specialites = specialites;
+		}
 
 		public int getId() {
 			return id;
@@ -83,13 +100,7 @@ public class Cv {
 			this.niveaux = niveaux;
 		}
 
-		public List<Specialite> getSpecialites() {
-			return specialites;
-		}
-
-		public void setSpecialites(List<Specialite> specialites) {
-			this.specialites = specialites;
-		}
+		
 
 		@Override
 		public String toString() {

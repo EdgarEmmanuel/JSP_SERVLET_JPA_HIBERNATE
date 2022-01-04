@@ -19,10 +19,11 @@ public class HomeController extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		req.setAttribute("base", "http://localhost:8081/SEARCH_JOB_PLATFORM/");
-		RequestDispatcher rd = null;
-		rd = req.getRequestDispatcher("/WEB-INF/views/index.jsp");
-		rd.forward(req, resp);
+//		req.setAttribute("base", "http://localhost:8081/SEARCH_JOB_PLATFORM/");
+//		RequestDispatcher rd = null;
+//		rd = req.getRequestDispatcher("/WEB-INF/views/index.jsp");
+//		rd.forward(req, resp);
+		resp.getWriter().println("HomeController");
 	}
 	
 	@Override

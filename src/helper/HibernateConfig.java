@@ -1,25 +1,14 @@
 package helper;
 
 
-import java.util.Properties;
-
+import model.*;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.cfg.Environment;
 import org.hibernate.service.ServiceRegistry;
 
-import model.Cv;
-import model.Demandeur;
-import model.DescriptionCv;
-import model.Entreprise;
-import model.ExperienceProf;
-import model.NiveauEtudes;
-import model.Offre;
-import model.Realisation;
-import model.Role;
-import model.Specialite;
-import model.User;
+import java.util.Properties;
 
 public class HibernateConfig {
 	
